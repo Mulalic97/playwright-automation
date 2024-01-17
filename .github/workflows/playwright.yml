@@ -34,5 +34,5 @@ jobs:
         aws_bucket: store-test-results
         source_dir: playwright-report
     - name: Link To Report
-      run: echo "https://s3.amazonaws.com/store-test-results/${{steps.S3.outputs.object_key}}/index.html"
+      run: echo "https://store-test-result.s3.amazonaws.com/${{steps.S3.outputs.object_key}}/index.html"
 
