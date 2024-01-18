@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "style:fix": "prettier --write \"./tests/**/*.ts\" \"./pages/**/*.ts\""
+    "style:fix": "prettier --write \"./tests/**/*.ts\" \"./pages/**/*.ts\" \"./utils/**/*.ts\""
   },
   "keywords": [],
   "author": "",

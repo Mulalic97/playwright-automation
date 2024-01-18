@@ -4,6 +4,21 @@ import { registerDataAPI } from "../utils/data";
 
 let token;
 
+const data = {
+  firstName: "John",
+  lastName: "Doe",
+  birthdate: "1970-01-01",
+  email: "jdoe@fake.com",
+  phone: "8005555555",
+  street1: "1 Main St.",
+  street2: "Apartment A",
+  city: "Anytown",
+  stateProvince: "KS",
+  postalCode: "12345",
+  country: "USA",
+};
+test.describe.configure({ mode: "serial" });
+
 test.beforeAll(async ({ request, constants }) => {
   const response = await request.post(`${constants.webClientURL}/users`, {
     data: {
@@ -12,7 +27,6 @@ test.beforeAll(async ({ request, constants }) => {
       password: registerDataAPI.password,
       lastName: registerDataAPI.lastName,
     },
-
   });
 
   expect(response.status()).toBe(201);
@@ -34,20 +48,16 @@ test("POST contacts", async ({ constants, request }) => {
     headers: {
       Authorization: `Bearer ${token}`,
     },
-    data: {
-      firstName: "John",
-      lastName: "Doe",
-      birthdate: "1970-01-01",
-      email: "jdoe@fake.com",
-      phone: "8005555555",
-      street1: "1 Main St.",
-      street2: "Apartment A",
-      city: "Anytown",
-      stateProvince: "KS",
-      postalCode: "12345",
-      country: "USA",
+    data,
+  });
+  expect(response.status()).toBe(201);
+});
+
+test("DELETE contacts", async ({ constants, request }) => {
+  const response = await request.delete(`${constants.webClientURL}/contacts`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
     },
   });
-
-  expect(response.status()).toBe(201);
+  expect(response.status()).toBe(200);
 });
