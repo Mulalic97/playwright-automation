@@ -3,7 +3,7 @@ Playwright automation framework for e2e testing with test artifacts uploaded to 
 
 # Getting Started
 1. Clone the repository
-   git clone https://github.com/Mulalic97/automated-qa-playwright.git
+   git clone https://github.com/Mulalic97/playwright-automation.git
 
 2. Navigate to the project and run the setup command
    
