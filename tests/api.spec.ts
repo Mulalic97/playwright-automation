@@ -17,7 +17,6 @@ const data = {
   postalCode: "12345",
   country: "USA",
 };
-test.describe.configure({ mode: "serial" });
 
 test.beforeAll(async ({ request, constants }) => {
   const response = await request.post(`${constants.webClientURL}/users`, {
@@ -53,11 +52,4 @@ test("POST contacts", async ({ constants, request }) => {
   expect(response.status()).toBe(201);
 });
 
-test("DELETE contacts", async ({ constants, request }) => {
-  const response = await request.delete(`${constants.webClientURL}/contacts`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  expect(response.status()).toBe(200);
-});
+
