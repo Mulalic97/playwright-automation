@@ -1,21 +1,22 @@
 import { test } from "../utils/test";
 import { expect } from "@playwright/test";
-import { registerData } from "../utils/data";
+import { registerDataAPI } from "../utils/data";
 
 let token;
 
 test.beforeAll(async ({ request, constants }) => {
   const response = await request.post(`${constants.webClientURL}/users`, {
     data: {
-      firstName: registerData.name,
-      email: registerData.email,
-      password: registerData.password,
-      lastName: registerData.lastName,
+      firstName: registerDataAPI.name,
+      email: registerDataAPI.email,
+      password: registerDataAPI.password,
+      lastName: registerDataAPI.lastName,
     },
+
   });
+
   expect(response.status()).toBe(201);
   const res = await response.json();
-
   token = res.token;
 });
 
