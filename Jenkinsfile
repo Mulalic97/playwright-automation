@@ -21,29 +21,33 @@ pipeline {
                 timeout(time: 60, unit: 'MINUTES')
             }
             steps {
-                script {
-                    // Set up Node.js and npm
-                    node {
-                        stage('Install Node.js and npm') {
-                            tool 'NodeJS 18'
-                            sh 'npm ci'
-                        }
+                // Set up Node.js and npm
+                node {
+                    stage('Install Node.js and npm') {
+                        tool 'NodeJS 18'
+                        sh 'npm ci'
                     }
                 }
 
                 // Install Playwright and browsers
                 stage('Install Playwright Browsers') {
-                    sh 'npx playwright install --with-deps'
+                    steps {
+                        sh 'npx playwright install --with-deps'
+                    }
                 }
 
                 // Run Playwright tests
                 stage('Run Playwright tests') {
-                    sh 'npx playwright test --reporter=html'
+                    steps {
+                        sh 'npx playwright test --reporter=html'
+                    }
                 }
 
                 // Upload test report as artifact
                 stage('Upload Test Report') {
-                    archiveArtifacts artifacts: 'playwright-report/*.html', allowEmptyArchive: true
+                    steps {
+                        archiveArtifacts artifacts: 'playwright-report/*.html', allowEmptyArchive: true
+                    }
                 }
 
                 // Upload to S3
