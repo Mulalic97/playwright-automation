@@ -6,7 +6,7 @@ pipeline {
     }
 
     triggers {
-        githubPush(branch: ['main', 'master'])
+        githubPush(branches: ['main', 'master'])
     }
 
     stages {
